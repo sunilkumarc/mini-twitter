@@ -1,29 +1,22 @@
 {
   "name": "mini-twitter",
   "version": "1.0.0",
-  "description": "Mini Twitter Application Built using NodeJS",
-  "main": "index.js",
+  "description": "Mini Twitter Application",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sunilkumarc/mini-twitter.git"
-  },
-  "keywords": [
-    "twitter",
-    "nodejs",
-    "reactjs",
-    "sunilkumarc"
-  ],
-  "author": "Sunil Kumar C",
+
+ "author": "Sunil Kumar",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sunilkumarc/mini-twitter/issues"
-  },
-  "homepage": "https://github.com/sunilkumarc/mini-twitter#readme",
   "dependencies": {
-    "express": "^4.12.4",
-    "mongodb": "^2.0.33"
+    "body-parser": "^1.12.4",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-react": "^0.12.2",
+    "jsx": "^0.9.89",
+    "path": "^0.11.14",
+    "react": "^0.13.3"
   }
 }
