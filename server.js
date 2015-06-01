@@ -44,5 +44,7 @@ server.get('/users/:id', function(req, res) {
     });
 });
 
+server.post('/login', bodyParser(), router.index);
+
 server.listen(8000);
 console.log('Server started on port 8000 ...');

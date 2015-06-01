@@ -17,6 +17,7 @@
     "grunt-browserify": "^3.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-react": "^0.12.2",
+    "jquery": "^2.1.4",
     "jsx": "^0.9.89",
     "mongoose": "^4.0.3",
     "node-libs-browser": "^0.5.2",

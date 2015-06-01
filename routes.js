@@ -14,3 +14,8 @@ exports.index = function(req, res) {
     // React.render(signupComponent, document.body);
     res.send('Working on it :(');
 }
+
+exports.login = function(req, res) {
+
+    console.log('Inside login handler');
+}
