@@ -24,27 +24,7 @@ mongoose.connect(db_url, function(err, conn) {
     }
 });
 
-server.post('/post/users', bodyParser(), function(req, res) {
-    var user = new User({username: req.body['username'], pass: req.body['pass']});
-    user.save(function(err) {
-        if (err) {
-            res.send('Could not save : ' + err);
-        } else {
-            res.send('Saved successfully');
-        }
-    });
-
-});
-
-server.get('/users/:id', function(req, res) {
-    User.find({username: req.params.id}).exec(function(err, post) {
-        if(err)
-            return res.send(err);
-        res.send(post);
-    });
-});
-
-server.post('/login', bodyParser(), router.index);
+server.post('/loginUser', bodyParser(), router.login);
 
 server.listen(8000);
 console.log('Server started on port 8000 ...');

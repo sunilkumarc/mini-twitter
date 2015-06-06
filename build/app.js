@@ -15,10 +15,10 @@ var routing = React.createClass({displayName: "routing",
 });
 
 let routes = (
-  React.createElement(Route, {path: "/", handler: routing, location: "history"}, 
-    React.createElement(DefaultRoute, {handler: Welcome}), 
+  React.createElement(Route, {path: "/", handler: routing}, 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignUp}), 
-    React.createElement(Route, {name: "login", path: "/login", handler: Login})
+    React.createElement(Route, {name: "login", path: "/login", handler: Login}), 
+    React.createElement(DefaultRoute, {handler: Welcome})
   )
 );
 

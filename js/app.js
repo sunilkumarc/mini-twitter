@@ -15,10 +15,10 @@ var routing = React.createClass({
 });
 
 let routes = (
-  <Route path="/" handler={routing} location="history">
-    <DefaultRoute handler={Welcome} />
+  <Route path="/" handler={routing}>
     <Route name="signup" path="/signup" handler={SignUp} />
     <Route name="login" path="/login" handler={Login} />
+    <DefaultRoute handler={Welcome} />
   </Route>
 );
 

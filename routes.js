@@ -1,5 +1,6 @@
 var User = require('./models/user');
 var React = require('react');
+var User = require('./models/user.js');
 
 exports.index = function(req, res) {
 
@@ -17,5 +18,14 @@ exports.index = function(req, res) {
 
 exports.login = function(req, res) {
 
-    console.log('Inside login handler');
+    User.findOne({email: req.body.email, pass: req.body.pass}).exec(function(err, user) {
+        if(err)
+            res.status(500).json(err);
+
+        if(!user) {
+            res.status(500).json({"err":"User Doesn't Exists"});
+        } else {
+            res.send(user);
+        }
+    });
 }
