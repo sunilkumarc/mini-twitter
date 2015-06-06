@@ -11,6 +11,7 @@ var Login = React.createClass({
         var self = this;
 
         $.ajax({
+
             type: "POST",
             url: "/loginUser",
 
@@ -31,6 +32,7 @@ var Login = React.createClass({
     },
 
     render: function() {
+
         return (
             <div>
                 <h1>Login Page</h1>

@@ -7,8 +7,8 @@ var SignUp = React.createClass({displayName: "SignUp",
     mixins: [Navigation],
 
     signUp: function() {
-        var self = this;
 
+        var self = this;
         var Firstname = self.refs.firstname.getDOMNode().value;
         var Lastname = self.refs.lastname.getDOMNode().value;
         var Email = self.refs.email.getDOMNode().value;
@@ -16,6 +16,7 @@ var SignUp = React.createClass({displayName: "SignUp",
         var Confirm = self.refs.confirm.getDOMNode().value
 
         if (Pass != Confirm) {
+
             alert("Passwords not matching!");
             return;
         } else {
@@ -45,10 +46,10 @@ var SignUp = React.createClass({displayName: "SignUp",
     },
 
     render: function() {
+
         return (
             React.createElement("div", null, 
                 React.createElement("h1", null, "Sign Up Page"), 
-
                 React.createElement("table", null, 
                     React.createElement("tr", null, 
                         React.createElement("td", null, "First Name"), 
@@ -75,7 +76,6 @@ var SignUp = React.createClass({displayName: "SignUp",
                         React.createElement("td", null, React.createElement("input", {type: "submit", value: "Login", onClick: this.signUp}))
                     )
                 )
-
             )
         );
     }
