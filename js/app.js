@@ -5,6 +5,7 @@ var Router = require('react-router'),
 var Welcome = require('./welcome.js');
 var SignUp = require('./signup.js');
 var Login = require('./login.js');
+var Dashboard = require('./dashboard.js');
 
 var routing = React.createClass({
     render: function() {
@@ -18,6 +19,7 @@ let routes = (
   <Route path="/" handler={routing}>
     <Route name="signup" path="/signup" handler={SignUp} />
     <Route name="login" path="/login" handler={Login} />
+    <Route name="dashboard" path="/dashboard" handler={Dashboard} />
     <DefaultRoute handler={Welcome} />
   </Route>
 );

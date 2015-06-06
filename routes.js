@@ -19,13 +19,32 @@ exports.index = function(req, res) {
 exports.login = function(req, res) {
 
     User.findOne({email: req.body.email, pass: req.body.pass}).exec(function(err, user) {
-        if(err)
-            res.status(500).json(err);
-
-        if(!user) {
-            res.status(500).json({"err":"User Doesn't Exists"});
-        } else {
+        if(user) {
             res.send(user);
+        } else {
+            res.status(500).send("User Doesn't Exists");
+        }
+    });
+}
+
+exports.signup = function(req, res) {
+
+    var user = new User({
+        first: req.body.first,
+        last: req.body.last,
+        email: req.body.email,
+        pass: req.body.pass
+    });
+
+    user.save(function(err) {
+        if (!err) {
+            console.log("200 OK");
+            res.status(200).send("OK");
+        } else {
+            if(err.code = 11000)
+                res.status(500).send("Email already taken!");
+            else
+                res.status(500).send("Somethind bad happened!");
         }
     });
 }

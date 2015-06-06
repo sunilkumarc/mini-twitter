@@ -1,11 +1,14 @@
 var React = require('react');
 var $ = require('jquery');
-var Router = require('react-router');
+var Navigation = require('react-router').Navigation;
 
 var Login = React.createClass({displayName: "Login",
-    mixins: [Router.Navigation],
+
+    mixins: [Navigation],
 
     login: function() {
+
+        var self = this;
 
         $.ajax({
             type: "POST",
@@ -13,17 +16,16 @@ var Login = React.createClass({displayName: "Login",
 
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-				email: this.refs.email.getDOMNode().value,
-				pass: this.refs.pass.getDOMNode().value
+				email: self.refs.email.getDOMNode().value,
+				pass: self.refs.pass.getDOMNode().value
 			}),
 
             success: function(data) {
-                console.log("Success!");
-                this.transitionTo("/");
+                self.transitionTo("/dashboard");
             },
 
-            failure: function(err) {
-                console.log("Error Occured : ");
+            error: function(err) {
+                alert(err.responseText);
             }
         });
     },
@@ -40,7 +42,7 @@ var Login = React.createClass({displayName: "Login",
                     ), 
                     React.createElement("tr", null, 
                         React.createElement("td", null, "Pass"), 
-                        React.createElement("td", null, React.createElement("input", {type: "text", label: "pass", ref: "pass"}))
+                        React.createElement("td", null, React.createElement("input", {type: "password", label: "pass", ref: "pass"}))
                     ), 
                     React.createElement("tr", null, 
                         React.createElement("td", null), 

@@ -5,6 +5,7 @@ var Router = require('react-router'),
 var Welcome = require('./welcome.js');
 var SignUp = require('./signup.js');
 var Login = require('./login.js');
+var Dashboard = require('./dashboard.js');
 
 var routing = React.createClass({displayName: "routing",
     render: function() {
@@ -18,6 +19,7 @@ let routes = (
   React.createElement(Route, {path: "/", handler: routing}, 
     React.createElement(Route, {name: "signup", path: "/signup", handler: SignUp}), 
     React.createElement(Route, {name: "login", path: "/login", handler: Login}), 
+    React.createElement(Route, {name: "dashboard", path: "/dashboard", handler: Dashboard}), 
     React.createElement(DefaultRoute, {handler: Welcome})
   )
 );

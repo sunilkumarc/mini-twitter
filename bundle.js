@@ -54,6 +54,7 @@
 	var Welcome = __webpack_require__(196);
 	var SignUp = __webpack_require__(197);
 	var Login = __webpack_require__(198);
+	var Dashboard = __webpack_require__(200);
 
 	var routing = React.createClass({ displayName: 'routing',
 	    render: function render() {
@@ -61,7 +62,7 @@
 	    }
 	});
 
-	var routes = React.createElement(Route, { path: '/', handler: routing }, React.createElement(Route, { name: 'signup', path: '/signup', handler: SignUp }), React.createElement(Route, { name: 'login', path: '/login', handler: Login }), React.createElement(DefaultRoute, { handler: Welcome }));
+	var routes = React.createElement(Route, { path: '/', handler: routing }, React.createElement(Route, { name: 'signup', path: '/signup', handler: SignUp }), React.createElement(Route, { name: 'login', path: '/login', handler: Login }), React.createElement(Route, { name: 'dashboard', path: '/dashboard', handler: Dashboard }), React.createElement(DefaultRoute, { handler: Welcome }));
 
 	Router.run(routes, function (Handler) {
 	    React.render(React.createElement(Handler, null), document.body);
@@ -23573,13 +23574,56 @@
 /* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
+	var $ = __webpack_require__(199);
+	var Navigation = __webpack_require__(157).Navigation;
 
-	var SignUp = React.createClass({ displayName: "SignUp",
+	var SignUp = React.createClass({ displayName: 'SignUp',
+
+	    mixins: [Navigation],
+
+	    signUp: function signUp() {
+	        var self = this;
+
+	        var Firstname = self.refs.firstname.getDOMNode().value;
+	        var Lastname = self.refs.lastname.getDOMNode().value;
+	        var Email = self.refs.email.getDOMNode().value;
+	        var Pass = self.refs.pass.getDOMNode().value;
+	        var Confirm = self.refs.confirm.getDOMNode().value;
+
+	        if (Pass != Confirm) {
+	            alert('Passwords not matching!');
+	            return;
+	        } else {
+
+	            $.ajax({
+	                type: 'POST',
+	                url: '/signUpUser',
+
+	                contentType: 'application/json; charset=utf-8',
+	                data: JSON.stringify({
+	                    first: Firstname,
+	                    last: Lastname,
+	                    email: Email,
+	                    pass: Pass
+	                }),
+
+	                success: function success(data) {
+	                    console.log('Success!');
+	                    self.transitionTo('/dashboard');
+	                },
+
+	                error: function error(err) {
+	                    alert(err.responseText);
+	                }
+	            });
+	        }
+	    },
+
 	    render: function render() {
-	        return React.createElement("div", null, React.createElement("h1", null, "Sign Up Page"));
+	        return React.createElement('div', null, React.createElement('h1', null, 'Sign Up Page'), React.createElement('table', null, React.createElement('tr', null, React.createElement('td', null, 'First Name'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'firstname', ref: 'firstname' }))), React.createElement('tr', null, React.createElement('td', null, 'Last Name'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'lastname', ref: 'lastname' }))), React.createElement('tr', null, React.createElement('td', null, 'Email'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'email', ref: 'email' }))), React.createElement('tr', null, React.createElement('td', null, 'Pass'), React.createElement('td', null, React.createElement('input', { type: 'password', label: 'pass', ref: 'pass' }))), React.createElement('tr', null, React.createElement('td', null, 'Confirm Password'), React.createElement('td', null, React.createElement('input', { type: 'password', label: 'confirm', ref: 'confirm' }))), React.createElement('tr', null, React.createElement('td', null), React.createElement('td', null, React.createElement('input', { type: 'submit', value: 'Login', onClick: this.signUp })))));
 	    }
 	});
 
@@ -23593,12 +23637,15 @@
 
 	var React = __webpack_require__(1);
 	var $ = __webpack_require__(199);
-	var Router = __webpack_require__(157);
+	var Navigation = __webpack_require__(157).Navigation;
 
 	var Login = React.createClass({ displayName: 'Login',
-	    mixins: [Router.Navigation],
+
+	    mixins: [Navigation],
 
 	    login: function login() {
+
+	        var self = this;
 
 	        $.ajax({
 	            type: 'POST',
@@ -23606,23 +23653,22 @@
 
 	            contentType: 'application/json; charset=utf-8',
 	            data: JSON.stringify({
-	                email: this.refs.email.getDOMNode().value,
-	                pass: this.refs.pass.getDOMNode().value
+	                email: self.refs.email.getDOMNode().value,
+	                pass: self.refs.pass.getDOMNode().value
 	            }),
 
 	            success: function success(data) {
-	                console.log('Success!');
-	                this.transitionTo('/');
+	                self.transitionTo('/dashboard');
 	            },
 
-	            failure: function failure(err) {
-	                console.log('Error Occured : ');
+	            error: function error(err) {
+	                alert(err.responseText);
 	            }
 	        });
 	    },
 
 	    render: function render() {
-	        return React.createElement('div', null, React.createElement('h1', null, 'Login Page'), React.createElement('table', null, React.createElement('tr', null, React.createElement('td', null, 'Email'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'email', ref: 'email' }))), React.createElement('tr', null, React.createElement('td', null, 'Pass'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'pass', ref: 'pass' }))), React.createElement('tr', null, React.createElement('td', null), React.createElement('td', null, React.createElement('input', { type: 'submit', value: 'Login', onClick: this.login })))));
+	        return React.createElement('div', null, React.createElement('h1', null, 'Login Page'), React.createElement('table', null, React.createElement('tr', null, React.createElement('td', null, 'Email'), React.createElement('td', null, React.createElement('input', { type: 'text', label: 'email', ref: 'email' }))), React.createElement('tr', null, React.createElement('td', null, 'Pass'), React.createElement('td', null, React.createElement('input', { type: 'password', label: 'pass', ref: 'pass' }))), React.createElement('tr', null, React.createElement('td', null), React.createElement('td', null, React.createElement('input', { type: 'submit', value: 'Login', onClick: this.login })))));
 	    }
 	});
 
@@ -32843,6 +32889,22 @@
 
 	}));
 
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Dashboard = React.createClass({ displayName: "Dashboard",
+	    render: function render() {
+	        return React.createElement("div", null, React.createElement("h1", null, "You are succesfully loggedin. Welcome to your dashboard."));
+	    }
+	});
+
+	module.exports = Dashboard;
 
 /***/ }
 /******/ ]);

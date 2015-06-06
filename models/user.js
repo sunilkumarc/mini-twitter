@@ -1,9 +1,13 @@
  var mongoose = require('mongoose');
  var Schema = mongoose.Schema;
+ var objId = Schema.ObjectId;
 
  var userSchema = new Schema({
-     email: 'String',
-     pass: 'String'
+     id: objId,
+     first: String,
+     last: String,
+     email: {type: String, unique: true},
+     pass: String
  });
 
 module.exports = mongoose.model('User', userSchema);

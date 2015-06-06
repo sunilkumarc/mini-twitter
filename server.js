@@ -25,6 +25,7 @@ mongoose.connect(db_url, function(err, conn) {
 });
 
 server.post('/loginUser', bodyParser(), router.login);
+server.post('/signUpUser', bodyParser(), router.signup);
 
 server.listen(8000);
 console.log('Server started on port 8000 ...');
