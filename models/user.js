@@ -7,7 +7,11 @@
      first: String,
      last: String,
      email: {type: String, unique: true},
-     pass: String
+     pass: String,
+     following: [objId],
+     followers: [objId],
+     followers_count: Number,
+     following_count: Number
  });
 
 module.exports = mongoose.model('User', userSchema);

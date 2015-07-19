@@ -16,7 +16,6 @@ var SignUp = React.createClass({displayName: "SignUp",
         var Confirm = self.refs.confirm.getDOMNode().value
 
         if (Pass != Confirm) {
-
             alert("Passwords not matching!");
             return;
         } else {

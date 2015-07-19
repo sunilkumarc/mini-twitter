@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var server = express();
 var User = require('./models/user.js');
-var session = require('client-sessions');
+var sessions = require('client-sessions');
 
 var db = undefined;
 
@@ -20,7 +20,7 @@ mongoose.connect(db_url, function(err, conn) {
     }
 });
 
-server.use(session({
+server.use(sessions({
     cookieName: 'mini-twitter-session',
     secret: 'random string',
     duration: 30 * 60 * 1000,
